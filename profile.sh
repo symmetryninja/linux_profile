@@ -1,8 +1,9 @@
 #/usr/bin/env bash
-source ~/linux_profile/aliases.sh
-source ~/linux_profile/hacks.sh
-source ~/linux_profile/ps1.sh
-source ~/linux_profile/git-completion.sh
+PROFILE_DIR=~/linux_profile
+source ${PROFILE_DIR}/aliases.sh
+source ${PROFILE_DIR}/hacks.sh
+source ${PROFILE_DIR}/ps1.sh
+source ${PROFILE_DIR}/git-completion.sh
 
 ## pyenv configs
 export PYENV_ROOT="$HOME/.pyenv"

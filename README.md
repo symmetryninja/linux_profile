@@ -20,9 +20,9 @@ sudo apt install -y net-tools ssh htop vim iftop curl git gcc make \
 
 Profile stuff
 ```bash
-cp ~/profile/.vimrc ~/
-cp ~/profile/.editorconfig ~/
-echo 'source ~/profile/profile.sh' >> ~/.bashrc
+cp ~/linux_profile/.vimrc ~/
+cp ~/linux_profile/.editorconfig ~/
+echo 'source ~/linux_profile/profile.sh' >> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -37,7 +37,7 @@ sudo systemctl start ssh
 
 execute [the script here](https://github.com/microsoft/linux-vm-tools/blob/cb07b3eaeb89822ebc6eaddb10f3932bb1879f47/ubuntu/20.04/install.sh) but read it first!
 
-***note*** I was unable to create the "Enhanced session" for this VM.
+***note*** I was unable to create the setup to enable using the "Enhanced session" feature in Hyper-V for an ubuntu 20.04 VM - but the script enables RDP which is basically the same thing.
 
 You may need to change `/etc/xrdp/xrdp.ini` port reference to something like this to allow RDP:
 ```text
