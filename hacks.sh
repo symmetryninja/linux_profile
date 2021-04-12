@@ -1,10 +1,4 @@
 #!/bin/bash
-setup-profile () {
-        cp ~/profile/.vimrc ~/
-        cp ~/profile/.editorconfig ~/
-        echo 'source ~/profile/profile.sh' >> ~/.bashrc
-}
-
 stopwatch() {
         BEGIN=$(date +%s)
         BACK="\b\b\b\b\b"

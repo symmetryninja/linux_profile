@@ -14,7 +14,7 @@ alias sn_dockerRMALL='docker rm $(docker ps -a -q); docker rmi -f $(docker image
 alias sn_randomnumber="openssl rand -hex 16 | sed 's/\(....\)/\1:/g; s/.$//'"
 
 # some things used in ROS1
-alias eb='nano ~/profile/profile.sh'
+alias eb='nano ~/.bashrc'
 alias sb='source ~/.bashrc'
 alias gs='git status'
 alias gp='git pull'

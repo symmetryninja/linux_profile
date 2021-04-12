@@ -50,7 +50,6 @@ You also may need to change the VM properties to support "enhanced session" in a
  Set-VM -VMName <your_vm_name>  -EnhancedSessionTransportType HvSocket
 ```
 
-
 ### pyenv
 
 pyenv [from here] (https://github.com/pyenv/pyenv-installer)
