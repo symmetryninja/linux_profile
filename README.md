@@ -50,6 +50,11 @@ You also may need to change the VM properties to support "enhanced session" in a
  Set-VM -VMName <your_vm_name>  -EnhancedSessionTransportType HvSocket
 ```
 
+Finally open 3389 to the local network:
+```bash
+sudo ufw allow 1191
+```
+
 ### pyenv
 
 pyenv [from here] (https://github.com/pyenv/pyenv-installer)
