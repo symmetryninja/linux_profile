@@ -70,8 +70,9 @@ Then install something python'y
 ```bash
 pyenv install 3.9.4
 pyenv global 3.9.4
-source ~/.bashrc
 
+#this assumes you're importing the profile.sh in your .bashrc
+source ~/.bashrc
 ```
 
 ### AWS CLI
