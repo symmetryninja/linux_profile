@@ -26,6 +26,13 @@ echo 'source ~/linux_profile/profile.sh foxy' >> ~/.bashrc
 source ~/.bashrc
 ```
 
+Git
+
+```
+   git config --global user.email "***REMOVED***"
+   git config --global user.name "1"
+```
+
 ### ssh autostart
 
 ```bash
