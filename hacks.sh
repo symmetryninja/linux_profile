@@ -28,37 +28,26 @@ stopwatch() {
 }
 
 ### Ros1 hacks
-ros-version() {
-    ROS1LIST="bionic melodic"
-    ROS2LIST="dashing eloquent foxy galactic"
-
-    if [[ " $ROS1LIST " =~ .*\ $ROSDIST\ .* ]]; then
-        echo ${ROSDIST} is ros1;
-        return "1";
-    fi
-    if [[ " $ROS2LIST " =~ .*\ $ROSDIST\ .* ]]; then
-        echo "${ROSDIST} is ros2"
-        return "2";
-    fi
-    echo "$ROSDIST no ros?"
-}
-
 switch-project() {
+    if [ -z ${1} ] ; then # no project
+        PROJECTDIR=`cat ${PROFILE_DIR}/.tmp.last_ros_project`
+        echo "No ROS project specified going with last: ${PROJECTDIR}";
+    else 
+        PROJECTDIR=$1
+    fi
+
+    echo ${PROJECTDIR} > ${PROFILE_DIR}/.tmp.last_ros_project
+    export WORKSPACE=${PROJECTDIR}
+    source /opt/ros/${ROSDIST}/setup.bash
+    source ${WORKSPACE}/devel/setup.bash
+    return;
+
+    # ROSDIST custom defines (not implemented)
     ROS1LIST="bionic melodic"
     ROS2LIST="dashing eloquent foxy galactic"
 
     if [[ " $ROS1LIST " =~ .*\ $ROSDIST\ .* ]]; then
-        if [ -z ${1} ] ; then # no project
-            PROJECTDIR=`cat ~/.last_ros_project`
-            echo "No ROS project specified going with last: ${PROJECTDIR}";
-        else 
-            PROJECTDIR=$1
-        fi
-    
-        echo ${PROJECTDIR} > ~/.last_ros_project
-        export WORKSPACE=${PROJECTDIR}
-        source /opt/ros/melodic/setup.bash
-        source ${WORKSPACE}/devel/setup.bash
+        echo "ROS 1 not implemented"
         return;
     fi
     if [[ " $ROS2LIST " =~ .*\ $ROSDIST\ .* ]]; then
@@ -67,7 +56,6 @@ switch-project() {
     fi
 
     echo "${ROS1LIST} RosDist not found"
-
 }
 
 
