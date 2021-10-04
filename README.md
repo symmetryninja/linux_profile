@@ -30,8 +30,8 @@ source ~/.bashrc
 Git
 
 ```
-   git config --global user.email "***REMOVED***"
-   git config --global user.name "1"
+   git config --global user.email "user@email.domain"
+   git config --global user.name "your name"
 ```
 
 ### ssh autostart
