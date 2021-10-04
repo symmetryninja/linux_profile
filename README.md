@@ -65,7 +65,7 @@ sudo ufw allow 3389
 
 ### pyenv
 
-pyenv [from here] (https://github.com/pyenv/pyenv-installer)
+pyenv [from here](https://github.com/pyenv/pyenv-installer)
 
 check the script is sane and then:
 
