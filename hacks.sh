@@ -39,19 +39,18 @@ switch-project() {
     echo ${PROJECTDIR} > ${PROFILE_DIR}/.tmp.last_ros_project
     export WORKSPACE=${PROJECTDIR}
     source /opt/ros/${ROSDIST}/setup.bash
-    source ${WORKSPACE}/devel/setup.bash
-    return;
 
     # ROSDIST custom defines (not implemented)
     ROS1LIST="bionic melodic"
     ROS2LIST="dashing eloquent foxy galactic"
 
     if [[ " $ROS1LIST " =~ .*\ $ROSDIST\ .* ]]; then
-        echo "ROS 1 not implemented"
+	source ${WORKSPACE}/devel/setup.bash
         return;
     fi
     if [[ " $ROS2LIST " =~ .*\ $ROSDIST\ .* ]]; then
-        echo "ROS 2 not implemented"
+	source ${WORKSPACE}/install/local_setup.bash
+        echo "ROS 2 - ${ROSDIST}"
         return;
     fi
 
