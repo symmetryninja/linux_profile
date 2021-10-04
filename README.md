@@ -1,6 +1,6 @@
 # Some linux VM hacks to make linuxing easier
 
-A basic linux profile that I always end up doing manually
+A basic linux profile that I always end up doing manually, this works for VM's but is also useful for linux machines and PI's etc
 
 ## Ubuntu
 
@@ -23,6 +23,7 @@ Profile stuff
 cp ~/linux_profile/.vimrc ~/
 cp ~/linux_profile/.editorconfig ~/
 echo 'source ~/linux_profile/profile.sh foxy' >> ~/.bashrc
+# the 'foxy' bit is to source in the ROS bash file - it works for whatever the ROS folder is called :)
 source ~/.bashrc
 ```
 
