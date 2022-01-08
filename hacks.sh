@@ -51,6 +51,7 @@ switch-project() {
     if [[ " $ROS2LIST " =~ .*\ $ROSDIST\ .* ]]; then
 	source ${WORKSPACE}/install/local_setup.bash
         echo "ROS 2 - ${ROSDIST}"
+        source /usr/share/colcon_cd/function/colcon_cd.sh
         return;
     fi
 
