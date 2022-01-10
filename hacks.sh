@@ -27,14 +27,16 @@ stopwatch() {
         done
 }
 
-### Ros1 hacks
+### Ros project hacks
 switch-project() {
     if [ -z ${1} ] ; then # no project
         PROJECTDIR=`cat ${PROFILE_DIR}/.tmp.last_ros_project`
-        echo "No ROS project specified going with last: ${PROJECTDIR}";
+        echo "Using previous project dir: ${PROJECTDIR}";
     else 
         PROJECTDIR=$1
+        echo "Selected ros project at: ${PROJECTDIR}"
     fi
+
 
     echo ${PROJECTDIR} > ${PROFILE_DIR}/.tmp.last_ros_project
     export WORKSPACE=${PROJECTDIR}
@@ -58,4 +60,7 @@ switch-project() {
     echo "${ROS1LIST} RosDist not found"
 }
 
+switch-project-pwd() {
+    switch-project `pwd`
+}
 
