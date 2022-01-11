@@ -23,7 +23,7 @@ Profile stuff
 cp ~/linux_profile/.vimrc ~/
 cp ~/linux_profile/.editorconfig ~/
 echo 'source ~/linux_profile/profile.sh foxy' >> ~/.bashrc
-# the 'foxy' bit is to source in the ROS bash file - it works for whatever the ROS folder is called :)
+# the 'foxy' bit is to source in the ROS bash file - it works for whatever the ROS folder is called - this could be done more elegantly
 source ~/.bashrc
 ```
 
@@ -33,29 +33,6 @@ source ~/.bashrc
 sudo systemctl enable ssh
 sudo systemctl start ssh
 ```
-
-### ubuntu 20.04 enhanced session
-
-execute [the script here](https://raw.githubusercontent.com/microsoft/linux-vm-tools/cb07b3eaeb89822ebc6eaddb10f3932bb1879f47/ubuntu/20.04/install.sh) but read it first!
-
-***note*** I was unable to create the setup to enable using the "Enhanced session" feature in Hyper-V for an ubuntu 20.04 VM - but the script enables RDP which is basically the same thing.
-
-You may need to change `/etc/xrdp/xrdp.ini` port reference to something like this to allow RDP:
-```text
-port=tcp://:3389
-```
-
-You also may need to change the VM properties to support "enhanced session" in an admin powershell:
-
-```powershell
- Set-VM -VMName <your_vm_name>  -EnhancedSessionTransportType HvSocket
-```
-
-Finally open 3389 to the local network:
-```bash
-sudo ufw allow 3389
-```
-
 ### pyenv
 
 pyenv [from here](https://github.com/pyenv/pyenv-installer)
@@ -88,6 +65,10 @@ sudo ./aws/install
 ```
 
 Details [from here](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
+
+### ubuntu 20.04 enhanced session in hyper-v
+
+To enable ubuntu 20.04 **enhanced session** in hyper-v you will need to execute [the script here](https://raw.githubusercontent.com/microsoft/linux-vm-tools/cb07b3eaeb89822ebc6eaddb10f3932bb1879f47/ubuntu/20.04/install.sh) but read it first!
 
 ## License
 
