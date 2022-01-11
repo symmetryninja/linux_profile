@@ -27,7 +27,9 @@ stopwatch() {
         done
 }
 
-### Ros project hacks
+## Ros project hacks - takes an input as a folder path, sources ROS and project code
+## Takes an input, stores it in the .tmp.last_ros_project file
+## if there's no input it gets the last-used folder
 ros-project() {
     if [ -z ${1} ] ; then # no project
         PROJECTDIR=`cat ${PROFILE_DIR}/.tmp.last_ros_project`
@@ -60,6 +62,7 @@ ros-project() {
     echo "${ROS1LIST} RosDist not found"
 }
 
+## Same as above but uses the pwd as the folder
 ros-project-pwd() {
     ros-project `pwd`
 }
