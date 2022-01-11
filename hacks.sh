@@ -28,7 +28,7 @@ stopwatch() {
 }
 
 ### Ros project hacks
-switch-project() {
+ros-project() {
     if [ -z ${1} ] ; then # no project
         PROJECTDIR=`cat ${PROFILE_DIR}/.tmp.last_ros_project`
         echo "Using previous project dir: ${PROJECTDIR}";
@@ -60,7 +60,7 @@ switch-project() {
     echo "${ROS1LIST} RosDist not found"
 }
 
-switch-project-pwd() {
-    switch-project `pwd`
+ros-project-pwd() {
+    ros-project `pwd`
 }
 
