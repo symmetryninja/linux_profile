@@ -45,7 +45,7 @@ ros-project() {
     source /opt/ros/${ROSDIST}/setup.bash
 
     # ROSDIST custom defines (not implemented)
-    ROS1LIST="bionic melodic"
+    ROS1LIST="bionic melodic noetic"
     ROS2LIST="dashing eloquent foxy galactic"
 
     if [[ " $ROS1LIST " =~ .*\ $ROSDIST\ .* ]]; then

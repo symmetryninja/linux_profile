@@ -19,6 +19,7 @@ sudo apt install -y net-tools ssh htop vim iftop curl git gcc make \
 ```
 
 Profile stuff
+
 ```bash
 cp ~/linux_profile/.vimrc ~/
 cp ~/linux_profile/.editorconfig ~/
@@ -33,6 +34,7 @@ source ~/.bashrc
 sudo systemctl enable ssh
 sudo systemctl start ssh
 ```
+
 ### pyenv
 
 pyenv [from here](https://github.com/pyenv/pyenv-installer)
@@ -46,8 +48,8 @@ curl https://pyenv.run | bash
 Then install something python'y
 
 ```bash
-pyenv install 3.9.7
-pyenv global 3.9.7
+pyenv install 3.9.10
+pyenv global 3.9.10
 
 #this assumes you're importing the profile.sh in your .bashrc
 source ~/.bashrc
@@ -68,7 +70,14 @@ Details [from here](https://docs.aws.amazon.com/cli/latest/userguide/install-cli
 
 ### ubuntu 20.04 enhanced session in hyper-v
 
-To enable ubuntu 20.04 **enhanced session** in hyper-v you will need to execute [the script here](https://raw.githubusercontent.com/microsoft/linux-vm-tools/cb07b3eaeb89822ebc6eaddb10f3932bb1879f47/ubuntu/20.04/install.sh) but read it first!
+To enable ubuntu 20.04 **enhanced session** in hyper-v you will need to:
+Run this in powershell on the hyper-v host:
+
+```powershell
+Set-VM -VMName "guest-name-in-hyper-v" -EnhancedSessionTransportType HvSocket
+```
+
+Then execute [the script here](https://raw.githubusercontent.com/microsoft/linux-vm-tools/cb07b3eaeb89822ebc6eaddb10f3932bb1879f47/ubuntu/20.04/install.sh) but read it first!
 
 ## License
 
