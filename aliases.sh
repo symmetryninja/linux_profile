@@ -1,8 +1,9 @@
+# Note - the `sn` prefix is just to prefix snips
 ## ssh with keepalive
 alias ssh='ssh -o TCPKeepAlive=yes -o ServerAliveInterval=15'
 
 # Port stuff
-alias sn_openPorts='sudo lsof -PiTCP -sTCP:LISTEN'
+alias sn_openports='sudo lsof -PiTCP -sTCP:LISTEN'
 
 # Docker bits
 alias sn_dockerRMC='docker rm $(docker ps -a -q)' # Delete all containers
@@ -13,7 +14,7 @@ alias sn_dockerRMALL='docker rm $(docker ps -a -q); docker rmi -f $(docker image
 # Aliases for lazyness
 alias sn_randomnumber="openssl rand -hex 16 | sed 's/\(....\)/\1:/g; s/.$//'"
 
-# some things used in ROS1
+# Some things commonly used in ROS projects
 alias eb='nano ~/.bashrc'
 alias sb='source ~/.bashrc'
 alias gs='git status'
