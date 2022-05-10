@@ -27,6 +27,29 @@ stopwatch() {
         done
 }
 
+### some scrawled together script to see if a file is not referenced in another directory
+#    useful for listing unused images in a doc tree
+
+find_usage () {
+  SOURCE_FOLDER=$1
+  CONTENT_FOLDER=$2
+
+  echo $SOURCE_FOLDER $CONTENT_FOLDER
+
+  return 0
+
+  FILE_LIST=`ls ${SOURCE_FOLDER}`
+
+  for FILE_ITEM in ${FILE_LIST};
+  do 
+    # echo "processing $f"; 
+    MATCH=`grep -r ${FILE_ITEM} ${CONTENT_FOLDER} | wc -l`
+    if [ ${MATCH} -lt 1 ]; 
+      then echo "${FILE_ITEM} not used"; 
+    fi
+  done
+}
+
 ## Ros project hacks - takes an input as a folder path, sources ROS and project code
 ## Takes an input, stores it in the .tmp.last_ros_project file
 ## if there's no input it gets the last-used folder
