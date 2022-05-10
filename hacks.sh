@@ -34,10 +34,6 @@ find_usage () {
   SOURCE_FOLDER=$1
   CONTENT_FOLDER=$2
 
-  echo $SOURCE_FOLDER $CONTENT_FOLDER
-
-  return 0
-
   FILE_LIST=`ls ${SOURCE_FOLDER}`
 
   for FILE_ITEM in ${FILE_LIST};
