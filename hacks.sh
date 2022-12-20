@@ -84,7 +84,7 @@ ros-project() {
       source ${WORKSPACE}/install/local_setup.bash
     fi
     # Colcon
-    if [[ -f "${WORKSPACE}/install/local_setup.bash" ]]; then
+    if [[ -f "/usr/share/colcon_cd/function/colcon_cd.sh" ]]; then
       source /usr/share/colcon_cd/function/colcon_cd.sh
     fi
     return;
