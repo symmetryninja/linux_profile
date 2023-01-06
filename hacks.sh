@@ -50,7 +50,7 @@ find_usage () {
 ## Takes an input, stores it in the .tmp.last_ros_project file
 ## if there's no input it gets the last-used folder
 ros-project() {
-  if [ -z ${1} ] ; then # no project
+  if [ -z ${1} ] ; then # no project specified
     PROJECTDIR=`cat ${PROFILE_DIR}/.tmp.last_ros_project`
     echo "Using previous project dir: ${PROJECTDIR}";
   else 
@@ -61,6 +61,8 @@ ros-project() {
 
   echo ${PROJECTDIR} > ${PROFILE_DIR}/.tmp.last_ros_project
   export WORKSPACE=${PROJECTDIR}
+  
+  echo "source/install: ${ROSDIST}"
   source /opt/ros/${ROSDIST}/setup.bash
 
   # ROSDIST custom defines (not implemented)
@@ -69,28 +71,27 @@ ros-project() {
 
   # ROS1
   if [[ " $ROS1LIST " =~ .*\ $ROSDIST\ .* ]]; then
-    echo "ROS 1 - ${ROSDIST}"
-    # Project setup
-    if [[ -f "${WORKSPACE}/devel/setup.bash" ]]; then
-      source ${WORKSPACE}/devel/setup.bash
-    fi
-    return;
+    PROJECT_SETUP=${WORKSPACE}/devel/setup.bash
   fi
+
   # ROS2
   if [[ " $ROS2LIST " =~ .*\ $ROSDIST\ .* ]]; then
-    echo "ROS 2 - ${ROSDIST}"
-    # Project setup
-    if [[ -f "${WORKSPACE}/install/local_setup.bash" ]]; then
-      source ${WORKSPACE}/install/local_setup.bash
-    fi
+    PROJECT_SETUP=${WORKSPACE}/install/local_setup.bash
+  fi
+
+
+  if [[ -f "${PROJECT_SETUP}" ]]; then
+    # Project
+    echo "source/install: ${PROJECT_SETUP}"
+    source ${PROJECT_SETUP}
+
     # Colcon
     if [[ -f "/usr/share/colcon_cd/function/colcon_cd.sh" ]]; then
       source /usr/share/colcon_cd/function/colcon_cd.sh
     fi
-    return;
+  else
+    echo "project: - no ${PROJECT_SETUP} - need a build?"
   fi
-
-  echo "${ROS1LIST} RosDist not found"
 }
 
 ## Same as above but uses the pwd as the folder
