@@ -55,22 +55,29 @@ curl https://pyenv.run | bash
 Then install something python'y
 
 ```bash
-pyenv install 3.9.10
-pyenv global 3.9.10
+pyenv install 3.10.7
+pyenv global 3.10.7
 
 #this assumes you're importing the profile.sh in your .bashrc
 source ~/.bashrc
 ```
 
-### AWS CLI
+### AWS CLI Version 2
 
-Version 2 :D
+For x86_64
 
 ```bash
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo ./aws/install
+```
 
+For ARM_64
+
+```bash
+curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
 ```
 
 Details [from here](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
