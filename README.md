@@ -21,9 +21,9 @@ sudo apt install -y net-tools ssh htop vim iftop curl git gcc make \
 Profile stuff
 
 ```bash
-cp ~/linux_profile/.vimrc ~/
-cp ~/linux_profile/.editorconfig ~/
-echo 'source ~/linux_profile/profile.sh foxy' >> ~/.bashrc
+ln -sf ~/linux_profile/.vimrc ~/.vimrc
+ln -sf ~/linux_profile/.editorconfig ~/.editorconfig
+echo 'source ~/linux_profile/profile.sh humble' >> ~/.bashrc
 # the 'foxy' bit is to source in the ROS bash file - it works for whatever the ROS folder is called - this could be done more elegantly
 source ~/.bashrc
 ```
