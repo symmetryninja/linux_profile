@@ -4,6 +4,13 @@ A basic linux profile that I always end up doing manually, this works for VM's b
 
 ## Ubuntu
 
+### removing stuff - usually installed on ubuntu - but i don't need it!
+
+```bash
+sudo apt remove --purge -Y libreoffice* thunderbird
+sudo apt clean && sudo apt autoremove
+```
+
 ### always needed stuff
 
 ```bash
@@ -11,24 +18,25 @@ A basic linux profile that I always end up doing manually, this works for VM's b
 sudo apt update
 sudo apt upgrade -y
 
-# packages - note 20.04 doesn't have python-openssl
+# packages i normally use
 sudo apt install -y net-tools ssh htop vim iftop curl git gcc make \
-    build-essential libssl-dev zlib1g-dev libbz2-dev \
+    build-essential libssl-dev zlib1g-dev libbz2-dev screen \
     libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-    xz-utils tk-dev libffi-dev liblzma-dev python-openssl
+    xz-utils tk-dev libffi-dev liblzma-dev 
 ```
 
-Profile stuff
+## Profile stuff
 
 ```bash
 ln -sf ~/linux_profile/.vimrc ~/.vimrc
 ln -sf ~/linux_profile/.editorconfig ~/.editorconfig
 echo 'source ~/linux_profile/profile.sh humble' >> ~/.bashrc
-# the 'foxy' bit is to source in the ROS bash file - it works for whatever the ROS folder is called - this could be done more elegantly
+# the 'humble' bit is to source in the ROS bash file
+# it works for whatever the ROS folder is called - this could be done more elegantly
 source ~/.bashrc
 ```
 
-Git
+## Git
 
 ```
    git config --global user.email "user@email.domain"
@@ -41,6 +49,20 @@ Git
 sudo systemctl enable ssh
 sudo systemctl start ssh
 ```
+
+### Add sudoers to Sudoers as nopasswd
+
+```txt
+%sudo   ALL=NOPASSWD: ALL
+```
+
+### Netbios hosname resolution
+
+```bash
+sudo apt install libnss-winbind winbind
+```
+
+Edit `/etc/nsswitch.conf` and add `wins` to the end hosts line.
 
 ### pyenv
 
