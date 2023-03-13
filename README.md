@@ -4,7 +4,7 @@ A basic linux profile that I always end up doing manually, this works for VM's b
 
 ## Ubuntu
 
-### removing stuff - usually installed on ubuntu - but i don't need it!
+### removing stuff - usually installed on ubuntu - but i don't need it
 
 ```bash
 sudo apt remove --purge -Y libreoffice* thunderbird
@@ -38,7 +38,7 @@ source ~/.bashrc
 
 ## Git
 
-```
+```txt
    git config --global user.email "user@email.domain"
    git config --global user.name "your name"
 ```
