@@ -72,7 +72,7 @@ find_usage () {
 ## if there's no input it gets the last-used folder
 ros-project() {
   if [ -z ${1} ] ; then # no project specified
-    PROJECTDIR=`cat ${PROFILE_DIR}/.tmp.last_ros_project`
+    PROJECTDIR=`cat ${LINUX_PROFILE_DIR}/.tmp.last_ros_project`
     echo "Using previous project dir: ${PROJECTDIR}";
   else 
     PROJECTDIR=$1
@@ -80,7 +80,7 @@ ros-project() {
   fi
 
 
-  echo ${PROJECTDIR} > ${PROFILE_DIR}/.tmp.last_ros_project
+  echo ${PROJECTDIR} > ${LINUX_PROFILE_DIR}/.tmp.last_ros_project
   export WORKSPACE=${PROJECTDIR}
   
   echo "source/install: ${ROSDIST}"
