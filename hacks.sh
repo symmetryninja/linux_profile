@@ -1,4 +1,5 @@
 #!/bin/bash
+
 stopwatch() {
     BEGIN=$(date +%s)
     BACK="\b\b\b\b\b"
@@ -25,6 +26,26 @@ stopwatch() {
     let OLDDIFF=DIFF
     sleep 0.5
     done
+}
+
+
+# AWS profile stuff - allows you to specify the aws-profile you wish to use
+aws-profile() {
+        if [ -z ${1} ]
+        then # Blankville
+                echo "No profile specified - select from:";
+                cat ~/.aws/config | grep profile  | cut -d " " -f2 | cut -d "]" -f1
+        else
+                if [ -z `cat ~/.aws/config | grep profile  | cut -d " " -f2 | cut -d "]" -f1 | grep ${1}` ]
+                then # Not found?? list the ones we have
+                        echo "Profile not found, select from:";
+                        cat ~/.aws/config | grep profile  | cut -d " " -f2 | cut -d "]" -f1
+                else # coolzies - found one, here the login just to be smug
+                        export AWS_PROFILE=${1};
+                        echo selected profile: ${1} - account sts id;
+                        echo `aws sts get-caller-identity`;
+                fi
+        fi
 }
 
 ### some scrawled together script to see if a file is not referenced in another directory
@@ -98,4 +119,3 @@ ros-project() {
 ros-project-pwd() {
   ros-project `pwd`
 }
-
