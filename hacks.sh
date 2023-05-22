@@ -48,14 +48,15 @@ aws-profile() {
         fi
 }
 
+# assumes a role in the CLI based on params account number, role, session name (optional)
 aws-assume-role() {
-  ACCOUNT=$1
-  ROLE=$2
-  SESSION=MySessionName
+  export ASSUME_ROLE_ACCOUNT=$1
+  export ASSUME_ROLE_ROLE=$2
+  export ASSUME_ROLE_SESSION="${3:-myCoolSession}"
   export $(printf "AWS_ACCESS_KEY_ID=%s AWS_SECRET_ACCESS_KEY=%s AWS_SESSION_TOKEN=%s" \
     $(aws sts assume-role \
-    --role-arn arn:aws:iam::${ACCOUNT}:role/${ROLE} \
-    --role-session-name ${SESSION} \
+    --role-arn arn:aws:iam::${ASSUME_ROLE_ACCOUNT}:role/${ASSUME_ROLE_ROLE} \
+    --role-session-name ${ASSUME_ROLE_SESSION} \
     --query "Credentials.[AccessKeyId,SecretAccessKey,SessionToken]" \
     --output text))
 }

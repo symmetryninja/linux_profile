@@ -5,7 +5,7 @@ function __git_ps1() {
 }
 
 function __aws_ps1() {
-        [ ! -z "$AWS_PROFILE" ] && echo "${AWS_PROFILE} "; 
+        [ ! -z "$AWS_PROFILE" ] && echo "${AWS_PROFILE} ${ASSUME_ROLE_ACCOUNT} ${ASSUME_ROLE_ROLE}"; 
 }
 
 # bash colors
