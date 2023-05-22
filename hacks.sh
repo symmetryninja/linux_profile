@@ -48,6 +48,18 @@ aws-profile() {
         fi
 }
 
+aws-assume-role() {
+  ACCOUNT=$1
+  ROLE=$2
+  SESSION=MySessionName
+  export $(printf "AWS_ACCESS_KEY_ID=%s AWS_SECRET_ACCESS_KEY=%s AWS_SESSION_TOKEN=%s" \
+    $(aws sts assume-role \
+    --role-arn arn:aws:iam::${ACCOUNT}:role/${ROLE} \
+    --role-session-name ${SESSION} \
+    --query "Credentials.[AccessKeyId,SecretAccessKey,SessionToken]" \
+    --output text))
+}
+
 ### some scrawled together script to see if a file is not referenced in another directory
 #  useful for listing unused images in a doc tree
 
