@@ -7,7 +7,7 @@ A basic linux profile that I always end up doing manually, this works for VM's b
 ### removing stuff - usually installed on ubuntu - but i don't need it
 
 ```bash
-sudo apt remove --purge -Y libreoffice* thunderbird
+sudo apt remove --purge -y libreoffice* thunderbird
 sudo apt clean && sudo apt autoremove
 ```
 
