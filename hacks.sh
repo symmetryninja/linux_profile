@@ -92,6 +92,8 @@ ros-project() {
     echo "Selected ros project at: ${PROJECTDIR}"
   fi
 
+  export ROS_PROJECT_DIR=${PROJECTDIR}
+
 
   echo ${PROJECTDIR} > ${LINUX_PROFILE_DIR}/.tmp.last_ros_project
   export WORKSPACE=${PROJECTDIR}
@@ -131,4 +133,13 @@ ros-project() {
 ## Same as above but uses the pwd as the folder
 ros-project-pwd() {
   ros-project `pwd`
+}
+
+### CD to current rosproject
+
+ros-project-cd() {
+  ros-project
+
+  cd ${ROS_PROJECT_DIR}
+
 }

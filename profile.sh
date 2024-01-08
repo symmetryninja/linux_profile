@@ -14,8 +14,10 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-if [ -z ${1} ] ; then
-  export ROSDIST="humble"
-else
-  export ROSDIST=${1}
+if [ -z "$ROSDIST" ]; then
+  if [ -z ${1} ] ; then
+    export ROSDIST="humble"
+  else
+    export ROSDIST=${1}
+  fi
 fi
