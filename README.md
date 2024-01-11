@@ -22,7 +22,7 @@ sudo apt upgrade -y
 sudo apt install -y net-tools ssh htop vim iftop curl git gcc make \
     build-essential libssl-dev zlib1g-dev libbz2-dev screen \
     libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-    xz-utils tk-dev libffi-dev liblzma-dev 
+    xz-utils tk-dev libffi-dev liblzma-dev
 ```
 
 ## Profile stuff
