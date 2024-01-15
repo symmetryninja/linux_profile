@@ -1,1 +1,1 @@
-/home/***REMOVED***/.bashrc
+~/.bashrc
