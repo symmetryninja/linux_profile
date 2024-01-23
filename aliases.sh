@@ -21,5 +21,6 @@ alias gs='git status'
 alias gp='git pull'
 alias cw='cd ${WORKSPACE}'
 alias cs='cd ${WORKSPACE}/src'
-alias cm='cd ${WORKSPACE} && rm -rf devel build && catkin_make'
-alias cb='cd ${WORKSPACE} && rm -rf build install log && colcon build'
+alias cb='cd ${WORKSPACE} && colcon build'
+alias cbs='cd ${WORKSPACE} && colcon build --symlink-install'
+
