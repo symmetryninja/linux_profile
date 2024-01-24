@@ -83,7 +83,7 @@ find_usage () {
 ## Ros project hacks - takes an input as a folder path, sources ROS and project code
 ## Takes an input, stores it in the .tmp.last_ros_project file
 ## if there's no input it gets the last-used folder
-ros-project() {
+rp() {
   if [ -z ${1} ] ; then # no project specified
     PROJECTDIR=`cat ${LINUX_PROFILE_DIR}/.tmp.last_ros_project`
     echo "Using previous project dir: ${PROJECTDIR}";
@@ -131,15 +131,13 @@ ros-project() {
 }
 
 ## Same as above but uses the pwd as the folder
-ros-project-pwd() {
-  ros-project `pwd`
+rp-pwd() {
+  rp `pwd`
 }
 
 ### CD to current rosproject
 
-ros-project-cd() {
-  ros-project
-
+rp-cd() {
+  rp
   cd ${ROS_PROJECT_DIR}
-
 }
