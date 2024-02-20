@@ -128,6 +128,15 @@ rp() {
   else
     echo "project: - no ${PROJECT_SETUP} - need a build?"
   fi
+
+  
+  # post - project-specific-script
+  POST_EXEC_SCRIPT=${ROS_PROJECT_DIR}/rp-post.sh
+  if [[ -f "${POST_EXEC_SCRIPT}" ]]; then
+    source ${POST_EXEC_SCRIPT}
+  fi
+
+  
 }
 
 ## Same as above but uses the pwd as the folder
