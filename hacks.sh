@@ -97,13 +97,12 @@ rp() {
 
   echo ${PROJECTDIR} > ${LINUX_PROFILE_DIR}/.tmp.last_ros_project
   export WORKSPACE=${PROJECTDIR}
-  
-  echo "source/install: ${ROSDIST}"
-  source /opt/ros/${ROSDIST}/setup.bash
+
+  rp-ros
 
   # ROSDIST custom defines (not implemented)
   ROS1LIST="bionic melodic noetic"
-  ROS2LIST="dashing eloquent foxy galactic humble"
+  ROS2LIST="dashing eloquent foxy galactic humble iron"
 
   # ROS1
   if [[ " $ROS1LIST " =~ .*\ $ROSDIST\ .* ]]; then
@@ -121,10 +120,7 @@ rp() {
     echo "source/install: ${PROJECT_SETUP}"
     source ${PROJECT_SETUP}
 
-    # Colcon
-    if [[ -f "/usr/share/colcon_cd/function/colcon_cd.sh" ]]; then
-      source /usr/share/colcon_cd/function/colcon_cd.sh
-    fi
+
   else
     echo "project: - no ${PROJECT_SETUP} - need a build?"
   fi
@@ -134,6 +130,17 @@ rp() {
   POST_EXEC_SCRIPT=${ROS_PROJECT_DIR}/rp-post.sh
   if [[ -f "${POST_EXEC_SCRIPT}" ]]; then
     source ${POST_EXEC_SCRIPT}
+  fi
+}
+
+rp-ros() {
+  echo "source/install: ${ROSDIST}"
+  source /opt/ros/${ROSDIST}/setup.bash
+
+  # Colcon
+  if [[ -f "/usr/share/colcon_cd/function/colcon_cd.sh" ]]; then
+    # echo "source/install: colcon"
+    source /usr/share/colcon_cd/function/colcon_cd.sh
   fi
 }
 
