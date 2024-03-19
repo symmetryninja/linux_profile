@@ -127,7 +127,7 @@ rp() {
 
   
   # post - project-specific-script
-  POST_EXEC_SCRIPT=${ROS_PROJECT_DIR}/rp-post.sh
+  POST_EXEC_SCRIPT=${ROS_PROJECT_DIR}/ros-project-env.sh
   if [[ -f "${POST_EXEC_SCRIPT}" ]]; then
     source ${POST_EXEC_SCRIPT}
   fi
