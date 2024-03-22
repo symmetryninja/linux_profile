@@ -152,6 +152,5 @@ rp-pwd() {
 ### CD to current rosproject
 
 rp-cd() {
-  rp
   cd ${ROS_PROJECT_DIR}
 }
