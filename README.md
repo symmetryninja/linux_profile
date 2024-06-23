@@ -41,6 +41,7 @@ source ~/.bashrc
 ```txt
    git config --global user.email "user@email.domain"
    git config --global user.name "your name"
+   git config push.autoSetupRemote true
 ```
 
 ### ssh autostart
