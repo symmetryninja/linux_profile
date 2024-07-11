@@ -36,6 +36,8 @@ echo 'source ~/linux_profile/profile.sh humble' >> ~/.bashrc
 source ~/.bashrc
 ```
 
+More details about ROS [here](ROS_HACKS.md)
+
 ## Git
 
 ```txt
