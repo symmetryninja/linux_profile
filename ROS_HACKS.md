@@ -71,7 +71,7 @@ This is for injecting variables that are env specific.
 
 On the laptop I have an environment variable `export INSTANCE_ROLE=laptop` and I have 3 profile files.
 
-### `ros-project-env.sh`
+### `ros-project-env.sh` (autoloaded)
 
 ```bash
 #! /usr/bin/env bash
@@ -91,7 +91,7 @@ else
 fi
 ```
 
-### `startup_laptop.sh`
+### `startup_laptop.sh` (selected if the environment variable is set to `laptop`)
 
 ```bash
 #!/usr/bin/env bash
@@ -116,7 +116,7 @@ export FASTRTPS_DEFAULT_PROFILES_FILE=${TEMPLATE_OUT}
 sudo ip route add 192.168.186.0/24 via ${ROS_DISCOVERY_SERVER_IP}
 ```
 
-### `startup_robot.sh`
+### `startup_robot.sh` (selected if there's no environment variable)
 
 ```bash
 #!/usr/bin/env bash
