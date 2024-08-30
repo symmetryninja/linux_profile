@@ -1,6 +1,8 @@
-# Some linux VM hacks to make linuxing easier
+# Some hacks to make linuxing easier
 
-A basic linux profile that I always end up doing manually, this works for VM's but is also useful for linux machines and PI's etc
+This repo contains a basic set of linux commands injected into a user profile. The hacks/tools are features that I always end up doing manually, all the time, in all the profiles, in all the VMS so I put it all in one place to make things easier.
+
+This works for linux VM's but is also useful for linux machines and PI's, some of the hacks in here are especially useful running ROS2.
 
 ## Ubuntu
 
