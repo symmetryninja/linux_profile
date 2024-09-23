@@ -83,7 +83,7 @@ find_usage () {
 ## Ros project hacks - takes an input as a folder path, sources ROS and project code
 ## Takes an input, stores it in the .tmp.last_ros_project file
 ## if there's no input it gets the last-used folder
-rp() {
+rp-dircheck() {
   if [ -z ${1} ] ; then # no project specified
     PROJECTDIR=`cat ${LINUX_PROFILE_DIR}/.tmp.last_ros_project`
     echo "Using previous project dir: ${PROJECTDIR}";
@@ -91,12 +91,14 @@ rp() {
     PROJECTDIR=$1
     echo "Selected ros project at: ${PROJECTDIR}"
   fi
-
   export ROS_PROJECT_DIR=${PROJECTDIR}
 
+  echo ${ROS_PROJECT_DIR} > ${LINUX_PROFILE_DIR}/.tmp.last_ros_project
+  export WORKSPACE=${ROS_PROJECT_DIR}
+}
 
-  echo ${PROJECTDIR} > ${LINUX_PROFILE_DIR}/.tmp.last_ros_project
-  export WORKSPACE=${PROJECTDIR}
+rp() {
+  rp-dircheck ${1}
 
   rp-ros
 
@@ -139,7 +141,6 @@ rp-ros() {
 
   # Colcon
   if [[ -f "/usr/share/colcon_cd/function/colcon_cd.sh" ]]; then
-    # echo "source/install: colcon"
     source /usr/share/colcon_cd/function/colcon_cd.sh
   fi
 }
@@ -152,5 +153,8 @@ rp-pwd() {
 ### CD to current rosproject
 
 rp-cd() {
+  if [ -z ${ROS_PROJECT_DIR} ] ; then
+    rp-dircheck
+  fi
   cd ${ROS_PROJECT_DIR}
 }
