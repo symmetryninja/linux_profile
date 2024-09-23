@@ -9,7 +9,7 @@ alias sn_openports='sudo lsof -PiTCP -sTCP:LISTEN'
 alias sn_dockerRMC='docker rm $(docker ps -a -q)' # Delete all containers
 alias sn_dockerRMI='docker rmi -f $(docker images -q)' # Delete all images
 alias sn_dockerRMV='docker volume rm $(docker volume ls -q)' # Delete all volumes
-alias sn_dockerRMALL='docker rm $(docker ps -a -q); docker rmi -f $(docker images -q); docker volume rm $(docker volume ls -q)' # Delete all
+alias sn_dockerRMALL='docker rm $(docker ps -a -q); docker rmi -f $(docker images -q); docker volume rm $(docker volume ls -q); docker system prune -a' # Delete all
 
 # Aliases for lazyness
 alias sn_randomnumber="openssl rand -hex 16 | sed 's/\(....\)/\1:/g; s/.$//'"
