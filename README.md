@@ -13,6 +13,8 @@ sudo apt remove --purge -y libreoffice* thunderbird
 sudo apt clean && sudo apt autoremove
 ```
 
+[some more space reduction stuff here](README.space.md)
+
 ### always needed stuff
 
 ```bash
