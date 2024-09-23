@@ -80,6 +80,15 @@ find_usage () {
  done
 }
 
+# Cleans up unused snaps from snapd
+# found this here: https://askubuntu.com/questions/1371833/howto-free-up-space-properly-on-my-var-lib-snapd-filesystem-when-snapd-is-unava
+cleanup_snaps () {
+  LANG=en_US.UTF-8 snap list --all | awk '/disabled/{print $1, $3}' |
+  while read pkg revision; do
+    sudo snap remove "$pkg" --revision="$revision"
+  done
+}
+
 ## Ros project hacks - takes an input as a folder path, sources ROS and project code
 ## Takes an input, stores it in the .tmp.last_ros_project file
 ## if there's no input it gets the last-used folder
