@@ -47,7 +47,8 @@ More details about ROS [here](ROS_HACKS.md)
 ```txt
    git config --global user.email "user@email.domain"
    git config --global user.name "your name"
-   git config push.autoSetupRemote true
+   git config --global push.autoSetupRemote true
+   git config --global pull.rebase true
 ```
 
 ### ssh autostart
