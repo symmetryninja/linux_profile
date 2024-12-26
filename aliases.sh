@@ -24,3 +24,4 @@ alias cs='cd ${WORKSPACE}/src'
 alias cb='cd ${WORKSPACE} && colcon build'
 alias cbs='cd ${WORKSPACE} && colcon build --symlink-install'
 
+alias xclip="xclip -selection c"
