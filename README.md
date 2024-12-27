@@ -44,11 +44,11 @@ More details about ROS [here](ROS_HACKS.md)
 
 ## Git
 
-```txt
-   git config --global user.email "user@email.domain"
-   git config --global user.name "your name"
-   git config --global push.autoSetupRemote true
-   git config --global pull.rebase true
+```bash
+git config --global user.email "user@email.domain"
+git config --global user.name "your name"
+git config --global push.autoSetupRemote true
+git config --global pull.rebase true
 ```
 
 ### ssh autostart
