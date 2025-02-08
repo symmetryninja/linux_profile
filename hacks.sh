@@ -89,6 +89,12 @@ cleanup_snaps () {
   done
 }
 
+# gets your public IP
+get-public-ip () {
+  export PUBLIC_IP=`dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | awk -F'"' '{ print $2}'`
+  echo "public IP: ${PUBLIC_IP} (exported as \$PUBLIC_IP)"
+}
+
 ## Ros project hacks - takes an input as a folder path, sources ROS and project code
 ## Takes an input, stores it in the .tmp.last_ros_project file
 ## if there's no input it gets the last-used folder
