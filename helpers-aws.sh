@@ -1,22 +1,29 @@
 #!/bin/bash
 # AWS profile stuff - allows you to specify the aws-profile you wish to use - just sets an env var
 aws-profile() {
-        if [ -z ${1} ]
-        then # Blankville
-                echo "No profile specified - select from:";
-                cat ~/.aws/config | grep profile  | cut -d " " -f2 | cut -d "]" -f1
-        else
-                if [ -z `cat ~/.aws/config | grep profile  | cut -d " " -f2 | cut -d "]" -f1 | grep ${1}` ]
-                then # Not found?? list the ones we have
-                        echo "Profile not found, select from:";
-                        cat ~/.aws/config | grep profile  | cut -d " " -f2 | cut -d "]" -f1
-                else # coolzies - found one, here the login just to be smug
-                        export AWS_PROFILE=${1};
-                        echo selected profile: ${1} - account sts id;
-                        echo `aws sts get-caller-identity`;
-                fi
-        fi
+  if [ -z ${1} ]
+  then # Blankville
+    echo "No profile specified - select from:";
+    cat ~/.aws/config | grep profile  | cut -d " " -f2 | cut -d "]" -f1
+  else
+    if [ -z `cat ~/.aws/config | grep profile  | cut -d " " -f2 | cut -d "]" -f1 | grep ${1}` ]
+    then # Not found?? list the ones we have
+      echo "Profile not found, select from:";
+      cat ~/.aws/config | grep profile  | cut -d " " -f2 | cut -d "]" -f1
+    else # coolzies - found one, here the login just to be smug
+      export AWS_PROFILE=${1};
+      echo selected profile: ${1} - account sts id;
+      echo `aws sts get-caller-identity`;
+    fi
+  fi
 }
+
+_aws-profile_completions() {
+  ACCOUNTS=`cat ~/.aws/config | grep profile  | cut -d " " -f2 | cut -d "]" -f1`
+  COMPREPLY=($(compgen -W "${ACCOUNTS}" "${COMP_WORDS[1]}"))
+}
+
+complete -F _aws-profile_completions aws-profile
 
 # assumes a role in the CLI based on params account number, role, session name (optional)
 aws-assume-role() {
@@ -33,10 +40,10 @@ aws-assume-role() {
 
 # AWS SSO useage - get the sso access token
 aws-access-token() {
-    cat $(ls -1d ~/.aws/sso/cache/* | grep -v botocore) |  jq -r "{accessToken} | .[] | select ( . != null)"
+  cat $(ls -1d ~/.aws/sso/cache/* | grep -v botocore) |  jq -r "{accessToken} | .[] | select ( . != null)"
 }
 
 # AWS SSO useage - lists SSO accounts
 aws-list-accounts() {
-    aws sso list-accounts --access-token $(aws-access-token) --output table
+  aws sso list-accounts --access-token $(aws-access-token) --output table
 }
