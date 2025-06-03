@@ -2,7 +2,9 @@
 
 LINUX_PROFILE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 source ${LINUX_PROFILE_DIR}/aliases.sh
-source ${LINUX_PROFILE_DIR}/hacks.sh
+source ${LINUX_PROFILE_DIR}/helpers-aws.sh
+source ${LINUX_PROFILE_DIR}/helpers-ros.sh
+source ${LINUX_PROFILE_DIR}/helpers-misc.sh
 source ${LINUX_PROFILE_DIR}/ps1.sh
 source ${LINUX_PROFILE_DIR}/git-completion.sh
 
