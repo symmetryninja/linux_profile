@@ -28,8 +28,9 @@ stopwatch() {
     done
 }
 
+## AWS helpers
 
-# AWS profile stuff - allows you to specify the aws-profile you wish to use
+# AWS profile stuff - allows you to specify the aws-profile you wish to use - just sets an env var
 aws-profile() {
         if [ -z ${1} ]
         then # Blankville
@@ -59,6 +60,16 @@ aws-assume-role() {
     --role-session-name ${ASSUME_ROLE_SESSION} \
     --query "Credentials.[AccessKeyId,SecretAccessKey,SessionToken]" \
     --output text))
+}
+
+# AWS SSO useage - get the sso access token
+aws-access-token() {
+    cat $(ls -1d ~/.aws/sso/cache/* | grep -v botocore) |  jq -r "{accessToken} | .[] | select ( . != null)"
+}
+
+# AWS SSO useage - lists SSO accounts
+aws-list-accounts() {
+    aws sso list-accounts --access-token $(aws-access-token) --output table
 }
 
 ### some scrawled together script to see if a file is not referenced in another directory
