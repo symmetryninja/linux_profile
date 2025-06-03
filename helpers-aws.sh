@@ -19,6 +19,10 @@ aws-profile() {
 }
 
 _aws-profile_completions() {
+  if [ "${#COMP_WORDS[@]}" != "2" ]; then
+    return
+  fi
+
   ACCOUNTS=`cat ~/.aws/config | grep profile  | cut -d " " -f2 | cut -d "]" -f1`
   COMPREPLY=($(compgen -W "${ACCOUNTS}" "${COMP_WORDS[1]}"))
 }
