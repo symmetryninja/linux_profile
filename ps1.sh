@@ -1,4 +1,6 @@
-# cool PS1 
+# a cool PS1 that is a colourised version of:
+## username@host /current/folder/path AWS-profile-name  git-branchname
+## $ > 
 function __git_ps1() { 
         b=$(git branch 2>/dev/null | grep '^*' | colrm 1 2);
         [ ! -z "$b" ] && echo "${b} "; 
