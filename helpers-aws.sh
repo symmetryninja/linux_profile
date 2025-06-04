@@ -18,6 +18,9 @@ aws-profile() {
   fi
 }
 
+# uses the ~/.aws/config file as a source for auto-complete with the above command
+# requires the config file to be populated.
+
 _aws-profile_completions() {
   if [ "${#COMP_WORDS[@]}" != "2" ]; then
     return
