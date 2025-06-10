@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Note - the `sn` prefix is just to prefix snips
 ## ssh with keepalive
 alias ssh='ssh -o TCPKeepAlive=yes -o ServerAliveInterval=15'
