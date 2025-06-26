@@ -23,8 +23,8 @@ sudo apt update
 sudo apt upgrade -y
 
 # packages i normally use
-sudo apt install -y net-tools ssh htop vim iftop curl git gcc make \
-    build-essential libssl-dev zlib1g-dev libbz2-dev screen \
+sudo apt install -y net-tools ssh btop htop vim iftop curl git gcc make \
+    build-essential libssl-dev zlib1g-dev libbz2-dev screen tmux \
     libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
     xz-utils tk-dev libffi-dev liblzma-dev
 ```
