@@ -2,11 +2,19 @@
 
 This repo contains a basic set of linux commands injected into a user profile. The hacks/tools are features that I always end up doing manually, all the time, in all the profiles, in all the VMS so I put it all in one place to make things easier.
 
+- [aliases](aliases.sh) - a set of useful aliases for ROS and linux including cleaning out docker.*
+- [helpers-aws](helpers-aws.sh) - a set of functions that make working with multiple AWS accounts easier
+- [helpers-ros](helpers-ros.sh) - a profile selector and script executor, making working on multiple ROS projects on the same machine easier [readme here](README.ROS.hacks.md)
+- [helpers-misc](helpers-misc.sh) - misc functions like stopwatch, find usage and snaps cleanup
+- [ps1](ps1.sh) - a cool PS1 - overkill for most but handy for me
+- [git-completion](git-completion.bash) - a direct import of [Shawn O. Pearce's gitcompletion implementation](https://github.com/git/git/tree/master/contrib/completion)
+- [some commentary on clearing space](README.space.md)
+
 This works for linux VM's but is also useful for linux machines and PI's, some of the hacks in here are especially useful running ROS2.
 
 ## Ubuntu
 
-### removing stuff - usually installed on ubuntu - but i don't need it
+### Removing stuff that I don't need
 
 ```bash
 sudo apt remove --purge -y libreoffice* thunderbird
@@ -15,7 +23,7 @@ sudo apt clean && sudo apt autoremove
 
 [some more space reduction stuff here](README.space.md)
 
-### always needed stuff
+### Packages I need
 
 ```bash
 #  update
@@ -29,7 +37,7 @@ sudo apt install -y net-tools ssh btop htop vim iftop curl git gcc make \
     xz-utils tk-dev libffi-dev liblzma-dev
 ```
 
-## Profile stuff
+## Profile helpers, including the ros bit
 
 ```bash
 ln -sf ~/linux_profile/.vimrc ~/.vimrc
@@ -40,7 +48,7 @@ echo 'source ~/linux_profile/profile.sh humble' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-More details about ROS [here](ROS_HACKS.md)
+More details about ROS helpers [here](README.ROS.hacks.md)
 
 ## Git
 

@@ -6,7 +6,7 @@ source ${LINUX_PROFILE_DIR}/helpers-aws.sh
 source ${LINUX_PROFILE_DIR}/helpers-ros.sh
 source ${LINUX_PROFILE_DIR}/helpers-misc.sh
 source ${LINUX_PROFILE_DIR}/ps1.sh
-source ${LINUX_PROFILE_DIR}/git-completion.sh
+source ${LINUX_PROFILE_DIR}/git-completion.bash
 
 ## pyenv configs
 export PYENV_ROOT="$HOME/.pyenv"
