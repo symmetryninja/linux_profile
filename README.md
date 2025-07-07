@@ -50,7 +50,7 @@ echo 'source ~/linux_profile/profile.sh humble' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-More details about ROS helpers [here](README.ROS.hacks.md)
+More details about [ROS helpers here](README.ROS.hacks.md)
 
 ## Git
 
