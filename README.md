@@ -42,6 +42,8 @@ sudo apt install -y net-tools ssh btop htop vim iftop curl git gcc make \
 ```bash
 ln -sf ~/linux_profile/.vimrc ~/.vimrc
 ln -sf ~/linux_profile/.editorconfig ~/.editorconfig
+ln -sf ~/linux_profile/.tmux.conf ~/.tmux.conf
+
 echo 'source ~/linux_profile/profile.sh humble' >> ~/.bashrc
 # the 'humble' bit is to source in the ROS bash file
 # it works for whatever the ROS folder is called - this could be done more elegantly
