@@ -63,3 +63,8 @@ get-public-ip () {
   echo "public IP: ${PUBLIC_IP} (exported as \$PUBLIC_IP)"
 }
 
+
+# checks if a path exists, checks if it's already in path and adds it to the PATH variable if required
+profile_add_to_path() {
+  [ -s "${1}" ] && [[ ! $PATH == *"${1}"* ]] && export PATH="${PATH}:${1}"
+}

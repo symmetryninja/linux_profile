@@ -10,12 +10,12 @@ source ${LINUX_PROFILE_DIR}/git-completion.bash
 
 ## pyenv configs
 export PYENV_ROOT="$HOME/.pyenv"
-[[ ! "${PATH}" == *"${PYENV_ROOT}"* ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-
+profile_add_to_path "$PYENV_ROOT/bin"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
+# Ros dist set default
 if [ -z "$ROSDIST" ]; then
   if [ -z ${1} ] ; then
     export ROSDIST="humble"
