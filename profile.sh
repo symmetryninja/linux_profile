@@ -9,10 +9,12 @@ source ${LINUX_PROFILE_DIR}/ps1.sh
 source ${LINUX_PROFILE_DIR}/git-completion.bash
 
 ## pyenv configs
-export PYENV_ROOT="$HOME/.pyenv"
-profile_add_to_path "$PYENV_ROOT/bin"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+if [ -z "${DISABLE_PYENV}" ]; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  profile_add_to_path "$PYENV_ROOT/bin"
+  if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+  fi
 fi
 
 # Ros dist set default
