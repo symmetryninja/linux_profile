@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
+LINUX_PROFILE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
 if [ -n "${LINUX_PROFILE_DIR}/env.sh" ]; then
   source ${LINUX_PROFILE_DIR}/env.sh
 fi
 
-LINUX_PROFILE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 source ${LINUX_PROFILE_DIR}/aliases.sh
 source ${LINUX_PROFILE_DIR}/helpers-aws.sh
 source ${LINUX_PROFILE_DIR}/helpers-ros.sh
