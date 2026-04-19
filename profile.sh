@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+if [ -n "${LINUX_PROFILE_DIR}/env.sh" ]; then
+  source ${LINUX_PROFILE_DIR}/env.sh
+fi
 
 LINUX_PROFILE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 source ${LINUX_PROFILE_DIR}/aliases.sh

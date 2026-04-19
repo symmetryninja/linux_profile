@@ -39,10 +39,22 @@ sudo apt install -y net-tools ssh btop htop vim iftop curl git gcc make \
 
 ## Profile helpers, including the ros bit
 
+### the env.sh file
+
+There are some parameters in the env file that could be reused later, if you wish to set them up, use the template:
+
 ```bash
-ln -sf ~/linux_profile/.vimrc ~/.vimrc
-ln -sf ~/linux_profile/.editorconfig ~/.editorconfig
-ln -sf ~/linux_profile/.tmux.conf ~/.tmux.conf
+cp example.env.sh env.sh
+```
+
+Then make your modifications!
+
+### Getting this into your bash
+
+```bash
+ln -sf ~/linux_profile/.vimrc ~/.vimrc # optional
+ln -sf ~/linux_profile/.editorconfig ~/.editorconfig # optional
+ln -sf ~/linux_profile/.tmux.conf ~/.tmux.conf # optional
 
 echo 'source ~/linux_profile/profile.sh humble' >> ~/.bashrc
 # the 'humble' bit is to source in the ROS bash file
@@ -53,6 +65,14 @@ source ~/.bashrc
 More details about [ROS helpers here](README.ROS.hacks.md)
 
 ## Git
+
+If you've created your env.sh file
+
+```bash
+profile_setup_git
+```
+
+Otherwise, the old fashioned way.
 
 ```bash
 git config --global user.email "user@email.domain"
@@ -70,7 +90,7 @@ sudo systemctl start ssh
 
 ### Add sudoers to Sudoers as nopasswd
 
-```txt
+```ini
 %sudo   ALL=NOPASSWD: ALL
 ```
 
