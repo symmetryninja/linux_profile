@@ -39,6 +39,12 @@ sudo apt install -y net-tools ssh btop htop vim iftop curl git gcc make \
 
 ## Profile helpers, including the ros bit
 
+`.vimrc` - this file simply adds a vim command `w!!` that prepends sudo onto the write command in vim - which is useful when you attempt to make changes to a write protected file.
+
+`.tmux.conf` - this adds in mouse interractions with tmux and ties in xclip for clipboard interaction with tmux - it's not perfect - in particular if you're in tmux on a local machine, the clipboard doesn't work and you need to hold shift while click-dragging to have the clipboard play nice with your terminal.
+
+`.editorconfig` - a very basic editorconfig.
+
 ### the env.sh file
 
 There are some parameters in the env file that could be reused later, if you wish to set them up, use the template:
@@ -136,21 +142,21 @@ Details [from here](https://docs.aws.amazon.com/cli/latest/userguide/install-cli
 
 ## License
 
-I like beer, so buy me a beer if you want and I'm not responsible for how you use this code.
+TLDR; I like beer, so buy me a beer if you want and I'm not responsible for how you use this code.
+
+Actual License
 
 ```text
 /* 
  * — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
  * “THE BEER-WARE LICENSE” (Revision 42):
- * <Spidey> wrote this file. As long as you retain this  
- * notice you can do whatever you want with this stuff. If we meet
- * some day, and you think this stuff is worth it, you can buy me
- * a beer in return.
+ * <Spidey> wrote this file. You can do whatever you want with this code, users
+ * of this code take all responsibility for the use of it. If we meet some day,
+ * and you think this stuff is worth it, you can buy me a beer in return.
  * — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
- * Amendment 1: The author(s) of this code accept absolutely no 
- * liability for any damage or general bad things that may come as 
- * part of its use. Any use of this software is deemed an agreement 
- * to absolve the author(s) of any liability, culpability, 
- * durability and any other “(*)ability” (good or bad).
+ * Amendment 1: The author(s) of this code accept absolutely no liability for
+ * any damage or general bad things that may come as part of its use. Any use
+ * of this software is deemed an agreement to absolve the author(s) of any
+ * liability, culpability, durability and any other “(*)ability” (good or bad).
  */
 ```
