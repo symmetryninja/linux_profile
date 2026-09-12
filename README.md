@@ -55,6 +55,12 @@ cp example.env.sh env.sh
 
 Then make your modifications!
 
+### Termide
+
+Termide is a terminal IDE, it's great. I have included a config file in the repo and auto-completions for bash.
+
+You will need to install the termide binary and have it in the path.  To install, follow the instructions on the [termide repo](https://github.com/termide/termide).
+
 ### Getting this into your bash
 
 ```bash
