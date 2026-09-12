@@ -61,6 +61,11 @@ Then make your modifications!
 ln -sf ~/linux_profile/.vimrc ~/.vimrc # optional
 ln -sf ~/linux_profile/.editorconfig ~/.editorconfig # optional
 ln -sf ~/linux_profile/.tmux.conf ~/.tmux.conf # optional
+# Termide - optional
+## config dir
+[ ! -s  ~/.config/termide ] && mkdir -p ~/.config/termide/
+[ ! -s  ~/.config/termide/config.toml ] && ln -sf ~/linux_profile/termide.toml ~/.config/termide/config.toml
+
 
 echo 'source ~/linux_profile/profile.sh humble' >> ~/.bashrc
 # the 'humble' bit is to source in the ROS bash file
