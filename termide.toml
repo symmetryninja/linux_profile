@@ -1,2 +1,6 @@
 [general]
 always_detachable = true
+theme = "windows-xp"
+
+[terminal]
+default_shell = "/bin/bash"
