@@ -1,0 +1,6 @@
+# These files are sourced into an interactive bash, not executed
+shell=bash
+# sourced paths are only known at runtime (ROS setup, completions, git-sh-prompt)
+disable=SC1090,SC1091
+# ROSDIST is set by profile.sh / the caller
+disable=SC2153

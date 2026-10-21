@@ -1,13 +1,24 @@
+# shellcheck disable=SC2034  # spare colours kept for tweaking the prompt
 # a cool PS1 that is a colourised version of:
 ## username@host /current/folder/path AWS-profile-name  git-branchname
-## $ > 
-function __git_ps1() { 
-        b=$(git branch 2>/dev/null | grep '^*' | colrm 1 2);
-        [ ! -z "$b" ] && echo "${b} "; 
+## $ >
+
+# use git's own prompt helper (handles detached HEAD, rebase/merge states)
+if [ -r /usr/lib/git-core/git-sh-prompt ]; then
+        source /usr/lib/git-core/git-sh-prompt
+fi
+: "${GIT_PS1_SHOWDIRTYSTATE:=1}"        # * unstaged, + staged
+#GIT_PS1_SHOWUNTRACKEDFILES=1          # % untracked (slow in big repos)
+#GIT_PS1_SHOWUPSTREAM=auto             # <, >, <> vs upstream
+
+function __git_branch_ps1() {
+        declare -F __git_ps1 >/dev/null && __git_ps1 "%s "
 }
 
 function __aws_ps1() {
-        [ ! -z "$AWS_PROFILE" ] && echo "${AWS_PROFILE} ${ASSUME_ROLE_ACCOUNT} ${ASSUME_ROLE_ROLE}"; 
+        [ -n "$AWS_PROFILE" ] && printf '%s ' "$AWS_PROFILE"
+        [ -n "$ASSUME_ROLE_ACCOUNT" ] && printf '%s %s ' "$ASSUME_ROLE_ACCOUNT" "$ASSUME_ROLE_ROLE"
+        return 0
 }
 
 # bash colors
@@ -21,4 +32,4 @@ MAGENTA='\[\033[35m\]'
 WHITE='\[\033[37m\]'
 PS_CLEAR='\[\033[0m\]'
 
-export PS1="${CYAN}\u${PS_CLEAR}@${GREEN}\h ${YELLOW}\w ${MAGENTA}\[\$(__aws_ps1)\]${GREEN}\[\$(__git_ps1)\]\n${YELLOW}\$ ${PS_CLEAR}> "
+PS1="${CYAN}\u${PS_CLEAR}@${GREEN}\h ${YELLOW}\w ${MAGENTA}\$(__aws_ps1)${GREEN}\$(__git_branch_ps1)\n${YELLOW}\$ ${PS_CLEAR}> "

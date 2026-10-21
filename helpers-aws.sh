@@ -1,19 +1,24 @@
 #!/bin/bash
+# lists the profile names in ~/.aws/config
+__aws_profiles() {
+  sed -n 's/^\[profile \([^]]*\)\].*/\1/p' ~/.aws/config 2>/dev/null
+}
+
 # AWS profile stuff - allows you to specify the aws-profile you wish to use - just sets an env var
 aws-profile() {
-  if [ -z ${1} ]
+  if [ -z "${1}" ]
   then # Blankville
     echo "No profile specified - select from:";
-    cat ~/.aws/config | grep profile  | cut -d " " -f2 | cut -d "]" -f1
+    __aws_profiles
   else
-    if [ -z `cat ~/.aws/config | grep profile  | cut -d " " -f2 | cut -d "]" -f1 | grep ${1}` ]
+    if ! __aws_profiles | grep -qxF -- "${1}"
     then # Not found?? list the ones we have
       echo "Profile not found, select from:";
-      cat ~/.aws/config | grep profile  | cut -d " " -f2 | cut -d "]" -f1
+      __aws_profiles
     else # coolzies - found one, here the login just to be smug
-      export AWS_PROFILE=${1};
-      echo selected profile: ${1} - account sts id;
-      echo `aws sts get-caller-identity`;
+      export AWS_PROFILE="${1}";
+      echo "selected profile: ${1} - account sts id";
+      aws sts get-caller-identity
     fi
   fi
 }
@@ -26,31 +31,41 @@ _aws-profile_completions() {
     return
   fi
 
-  ACCOUNTS=`cat ~/.aws/config | grep profile  | cut -d " " -f2 | cut -d "]" -f1`
-  COMPREPLY=($(compgen -W "${ACCOUNTS}" "${COMP_WORDS[1]}"))
+  local ACCOUNTS
+  ACCOUNTS=$(__aws_profiles)
+  mapfile -t COMPREPLY < <(compgen -W "${ACCOUNTS}" -- "${COMP_WORDS[1]}")
 }
 
 complete -F _aws-profile_completions aws-profile
 
 # assumes a role in the CLI based on params account number, role, session name (optional)
 aws-assume-role() {
-  export ASSUME_ROLE_ACCOUNT=$1
-  export ASSUME_ROLE_ROLE=$2
-  export ASSUME_ROLE_SESSION="${3:-myCoolSession}"
-  export $(printf "AWS_ACCESS_KEY_ID=%s AWS_SECRET_ACCESS_KEY=%s AWS_SESSION_TOKEN=%s" \
-    $(aws sts assume-role \
-    --role-arn arn:aws:iam::${ASSUME_ROLE_ACCOUNT}:role/${ASSUME_ROLE_ROLE} \
-    --role-session-name ${ASSUME_ROLE_SESSION} \
+  if [ -z "$1" ] || [ -z "$2" ]; then
+    echo "usage: aws-assume-role <account-number> <role-name> [session-name]"
+    return 1
+  fi
+  local CREDS SESSION="${3:-myCoolSession}"
+  CREDS=$(aws sts assume-role \
+    --role-arn "arn:aws:iam::${1}:role/${2}" \
+    --role-session-name "${SESSION}" \
     --query "Credentials.[AccessKeyId,SecretAccessKey,SessionToken]" \
-    --output text))
+    --output text) || { echo "assume-role failed - credentials unchanged"; return 1; }
+  read -r AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN <<< "${CREDS}"
+  export AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
+  export ASSUME_ROLE_ACCOUNT="$1"
+  export ASSUME_ROLE_ROLE="$2"
+  export ASSUME_ROLE_SESSION="${SESSION}"
 }
 
 # AWS SSO useage - get the sso access token
 aws-access-token() {
-  cat $(ls -1d ~/.aws/sso/cache/* | grep -v botocore) |  jq -r "{accessToken} | .[] | select ( . != null)"
+  local f
+  for f in ~/.aws/sso/cache/*.json; do
+    [[ "$f" == *botocore* ]] || cat "$f"
+  done | jq -r "{accessToken} | .[] | select ( . != null)"
 }
 
 # AWS SSO useage - lists SSO accounts
 aws-list-accounts() {
-  aws sso list-accounts --access-token $(aws-access-token) --output table
+  aws sso list-accounts --access-token "$(aws-access-token)" --output table
 }
