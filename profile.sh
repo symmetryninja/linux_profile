@@ -2,16 +2,20 @@
 LINUX_PROFILE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 if [ -f "${LINUX_PROFILE_DIR}/env.sh" ]; then
-  source ${LINUX_PROFILE_DIR}/env.sh
+  source "${LINUX_PROFILE_DIR}/env.sh"
 fi
 
-source ${LINUX_PROFILE_DIR}/aliases.sh
-source ${LINUX_PROFILE_DIR}/helpers-aws.sh
-source ${LINUX_PROFILE_DIR}/helpers-bash-completion.bash
-source ${LINUX_PROFILE_DIR}/helpers-ros.sh
-source ${LINUX_PROFILE_DIR}/helpers-misc.sh
-source ${LINUX_PROFILE_DIR}/ps1.sh
-source ${LINUX_PROFILE_DIR}/git-completion.bash
+source "${LINUX_PROFILE_DIR}/aliases.sh"
+source "${LINUX_PROFILE_DIR}/helpers-aws.sh"
+source "${LINUX_PROFILE_DIR}/helpers-ros.sh"
+source "${LINUX_PROFILE_DIR}/helpers-misc.sh"
+source "${LINUX_PROFILE_DIR}/ps1.sh"
+
+# Autocompletion for just  
+command -v just >/dev/null && source <(just --completions bash)
+
+# Autocompletion for termide
+command -v termide >/dev/null && source <(termide --completions bash)
 
 ## pyenv configs
 if [ -z "${DISABLE_PYENV}" ]; then
@@ -24,8 +28,8 @@ fi
 
 # Ros dist set default
 if [ -z "$ROSDIST" ]; then
-  if [ -z ${1} ] ; then
-    export ROSDIST="humble"
+  if [ -z "${1}" ] ; then
+    export ROSDIST="jazzy"
   else
     export ROSDIST=${1}
   fi
