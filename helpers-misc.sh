@@ -70,30 +70,3 @@ profile_add_to_path() {
   [ -d "${1}" ] && [[ ":${PATH}:" != *":${1}:"* ]] && export PATH="${PATH}:${1}"
 }
 
-profile_setup_git() {
-  if [ -f "${LINUX_PROFILE_DIR}/env.sh" ]; then
-    source "${LINUX_PROFILE_DIR}/env.sh"
-    if [ -n "${ENV_PROFILE_GIT_EMAIL}" ]; then
-      git config --global user.email "${ENV_PROFILE_GIT_EMAIL}"
-    else
-      echo ENV_PROFILE_GIT_EMAIL not set
-    fi
-    if [ -n "${ENV_PROFILE_GIT_NAME}" ]; then
-      git config --global user.name "${ENV_PROFILE_GIT_NAME}"
-    else 
-      echo ENV_PROFILE_GIT_NAME not set
-    fi
-    if [ -n "${ENV_PROFILE_GIT_AUTO_REMOTE}" ]; then
-      git config --global push.autoSetupRemote "${ENV_PROFILE_GIT_AUTO_REMOTE}"
-    else 
-      echo ENV_PROFILE_GIT_AUTO_REMOTE not set
-    fi
-    if [ -n "${ENV_PROFILE_GIT_REBASE}" ]; then
-      git config --global pull.rebase "${ENV_PROFILE_GIT_REBASE}"
-    else 
-      echo ENV_PROFILE_GIT_REBASE not set
-    fi
-  else
-    echo "no profile env file: ${LINUX_PROFILE_DIR}/env.sh (see example.env.sh)"
-  fi
-}

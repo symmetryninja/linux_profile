@@ -83,14 +83,6 @@ More details about [ROS helpers here](README.ROS.hacks.md)
 
 ## Git
 
-If you've created your env.sh file
-
-```bash
-profile_setup_git
-```
-
-Otherwise, the old fashioned way.
-
 ```bash
 git config --global user.email "user@email.domain"
 git config --global user.name "your name"
